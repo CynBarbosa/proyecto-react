@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.encabezado {
+  background-color: black;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+.barra-superior {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.625rem;
+}
+.encabezado h1 {
+  margin-left: 10px;
+  font-family: "Bebas Neue", sans-serif;
+}
+.encabezado input {
+  font-family: "Bebas Neue", sans-serif;
+  background-color: rgba(255, 255, 255, 0.952);
+}
+.carrito img {
+  background-color: rgba(255, 255, 255, 0.952);
+  border-radius: 5px;
+}
+.carrito span {
+  color: red;
+}
