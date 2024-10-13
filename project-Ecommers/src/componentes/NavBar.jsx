@@ -1,12 +1,16 @@
+import React from "react";
 import CartWidget from "./CartWidget";
 import "../style/navBar.css";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <>
       <div className="encabezado">
         <div className="barra-superior">
-          <h1>Neko</h1>
+          <NavLink className={"logoNavBar"} to={"/"}>
+            Neko
+          </NavLink>
           <input type="text" placeholder="Buscar producto..." id="search" />
           <CartWidget />
         </div>

@@ -1,12 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .encabezado {
-  background-color: black;
+  background-image: linear-gradient(
+    to bottom,
+    #9b00ffe1,
+    #0085ffe1,
+    #00b2ffe1,
+    #00d0f4e1,
+    #00e6c5e1,
+    #3be497e1,
+    #71de5fe1,
+    #a2d400e1,
+    #c8b500e1,
+    #e39100e1,
+    #f56800e1,
+    #fb3131e1
+  );
   width: 100%;
   height: 50px;
+  padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,18 +32,20 @@
   align-items: center;
   gap: 0.625rem;
 }
-.encabezado h1 {
-  margin-left: 10px;
+.logoNavBar {
+  text-decoration: none;
   font-family: "Bebas Neue", sans-serif;
+  font-weight: bolder;
+  color: black;
+  font-size: 30px;
 }
 .encabezado input {
+  width: 300px;
+  height: 25px;
   font-family: "Bebas Neue", sans-serif;
-  background-color: rgba(255, 255, 255, 0.952);
-}
-.carrito img {
-  background-color: rgba(255, 255, 255, 0.952);
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
 }
 .carrito span {
-  color: red;
+  color: rgb(0, 162, 255);
 }

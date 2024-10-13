@@ -1,0 +1,52 @@
+.menuHamburguesa {
+  width: 100%;
+  overflow: hidden;
+  padding: 0px 10px 0px 10px;
+  background-image: linear-gradient(
+    to top,
+    #9b00ffe1,
+    #0085ffe1,
+    #00b2ffe1,
+    #00d0f4e1,
+    #00e6c5e1,
+    #3be497e1,
+    #71de5fe1,
+    #a2d400e1,
+    #c8b500e1,
+    #e39100e1,
+    #f56800e1,
+    #fb3131e1
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+.hamburguesaIcono {
+  color: black;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  height: 30px;
+  background: none;
+  border: none;
+}
+.menuDesplegable {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.625rem;
+}
+.menuDesplegable ul {
+  height: 150px;
+}
+.Links {
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: bold;
+  color: black;
+}
+.Links:hover {
+  color: gray;
+}
