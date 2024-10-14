@@ -3,7 +3,7 @@
   width: 97%;
   margin: 20px;
   padding: 10px;
-  border: solid gray;
+  border: solid #c8b500e1;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -27,14 +27,15 @@
   font-size: 20px;
 }
 .itemDetail div button {
-  background-color: #7051fa;
+  background-color: #00e6c5e1;
   width: 200px;
   height: 30px;
   margin-top: 10px;
   padding: 5px;
   font-family: "Bebas Neue", sans-serif;
   font-weight: bolder;
-  border: solid gray;
+  color: black;
+  border: solid #0085ffe1;
   border-radius: 10px;
 }
 .itemDetail img {

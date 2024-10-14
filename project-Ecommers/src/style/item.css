@@ -12,7 +12,7 @@
   align-items: center;
   text-align: center;
   gap: 0.625rem;
-  border: solid gray;
+  border: solid #c8b500e1;
 }
 .container img {
   width: 130px;
@@ -44,10 +44,10 @@
   width: 100px;
   height: 30px;
   padding: 5px;
-  background-color: #7051fa;
+  background-color: #00e6c5e1;
   color: black;
   border-radius: 5px;
   font-family: "Bebas Neue", sans-serif;
   font-weight: bold;
-  border: solid gray;
+  border: solid #0085ffe1;
 }

@@ -3,13 +3,11 @@ import mockProducts from "../assets/productos.json";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 
-//Logica para traer los productos. Promise, setTimeout etc.
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  //{categoryId: "electronics"}
   const { categoryId } = useParams();
 
   useEffect(() => {

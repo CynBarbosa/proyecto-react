@@ -38,9 +38,6 @@
   align-items: center;
   gap: 0.625rem;
 }
-.menuDesplegable ul {
-  height: 150px;
-}
 .Links {
   text-decoration: none;
   font-family: "Bebas Neue", sans-serif;
