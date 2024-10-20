@@ -1,21 +1,21 @@
 .encabezado {
   background-image: linear-gradient(
     to bottom,
-    #9b00ffe1,
-    #0085ffe1,
-    #00b2ffe1,
-    #00d0f4e1,
-    #00e6c5e1,
-    #3be497e1,
-    #71de5fe1,
-    #a2d400e1,
-    #c8b500e1,
-    #e39100e1,
-    #f56800e1,
-    #fb3131e1
+    #000000,
+    #0a0a0a,
+    #121212,
+    #181818,
+    #1d1d1d,
+    #202020,
+    #242424,
+    #272727,
+    #292929,
+    #2a2a2a,
+    #2c2c2c,
+    #2e2e2e
   );
   width: 100%;
-  height: 50px;
+  height: 60px;
   padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
   text-decoration: none;
   font-family: "Bebas Neue", sans-serif;
   font-weight: bolder;
-  color: black;
+  color: white;
   font-size: 30px;
 }
 .encabezado input {
@@ -48,4 +48,8 @@
 }
 .carrito span {
   color: rgb(0, 162, 255);
+}
+.carrito img {
+  background-color: white;
+  border-radius: 5px;
 }

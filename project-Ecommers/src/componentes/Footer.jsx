@@ -1,8 +1,8 @@
 import React from "react";
 import x from "../assets/img/x-icon.svg";
-import tiktok from "../assets/img/tiktok-icon.svg";
+import tiktok from "../assets/img/bxl-tiktok.svg";
 import threads from "../assets/img/threads-icon.svg";
-import instagram from "../assets/img/instagram-icon.svg";
+import instagram from "../assets/img/bxl-instagram-alt.svg";
 import "../style/footer.css";
 
 const Footer = () => {

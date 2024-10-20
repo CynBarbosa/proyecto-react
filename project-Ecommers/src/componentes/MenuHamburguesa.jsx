@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/menuHamburguesa.css";
 import { NavLink } from "react-router-dom";
+import Flecha from "../assets/img/down.svg";
 
 const MenuHamburguesa = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ const MenuHamburguesa = () => {
         className="hamburguesaIcono"
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        Categoria
+        Categoria<img className="flechaMenuHamburguesa" src={Flecha}></img>
       </button>
       {menuOpen && (
         <nav className="menuDesplegable">

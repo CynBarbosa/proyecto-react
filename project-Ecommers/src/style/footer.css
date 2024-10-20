@@ -1,22 +1,24 @@
 .footer {
   background-image: linear-gradient(
-    to bottom,
-    #9800fbe1,
-    #0080ffe1,
-    #00aeffe1,
-    #00cbfee1,
-    #00e4d9e1,
-    #3ee4ade1,
-    #76e07de1,
-    #abd849e1,
-    #c8bb03e1,
-    #e19600e1,
-    #f36d00e1,
-    #fb3131e1
+    to top,
+    #000000,
+    #0a0a0a,
+    #121212,
+    #181818,
+    #1d1d1d,
+    #202020,
+    #242424,
+    #272727,
+    #292929,
+    #2a2a2a,
+    #2c2c2c,
+    #2e2e2e
   );
   width: 100%;
   height: 50px;
   padding: 0px 10px 0px 10px;
+  position: absolute;
+  bottom: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -26,7 +28,8 @@
 .footer h1 {
   font-family: "Bebas Neue", sans-serif;
   font-weight: bold;
-  color: black;
+  font-size: 30px;
+  color: white;
 }
 .redes-footer {
   display: flex;
