@@ -1,43 +1,46 @@
 import React, { useEffect, useState } from "react";
-import mockProducts from "../assets/productos.json";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import { db } from "../firebase/config";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const promise1 = new Promise((res, rej) => {
-      setTimeout(() => {
-        res(mockProducts);
-      }, 2000);
-    });
-
-    try {
-      const getProducts = async () => {
+    const getProducts = async () => {
+      try {
         setLoading(true);
-        setError(null);
-        const products = await promise1;
-        let productsFiltered;
+        let productsFiltered = [];
+
         if (categoryId) {
-          productsFiltered = products.filter(
-            (product) => product.category === categoryId
+          const q = query(
+            collection(db, "products"),
+            where("category", "==", categoryId)
           );
+
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((doc) => {
+            productsFiltered.push({ id: doc.id, ...doc.data() });
+          });
         } else {
-          productsFiltered = products;
+          const querySnapshot = await getDocs(collection(db, "products"));
+          querySnapshot.forEach((doc) => {
+            productsFiltered.push({ id: doc.id, ...doc.data() });
+          });
         }
         setProducts(productsFiltered);
         setLoading(false);
-      };
-
-      getProducts();
-    } catch (error) {
-      setError(error.message);
-    }
+      } catch (error) {
+        <>
+          <h2>No se encontro documento!</h2>
+        </>;
+      }
+    };
+    getProducts();
   }, [categoryId]);
 
   return loading ? <h1>Loading.. </h1> : <ItemList products={products} />;

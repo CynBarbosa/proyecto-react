@@ -14,8 +14,6 @@
     #2c2c2c,
     #2e2e2e
   );
-  width: 100%;
-  height: 60px;
   padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
@@ -25,7 +23,7 @@
 }
 .barra-superior {
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -40,7 +38,7 @@
   font-size: 30px;
 }
 .encabezado input {
-  width: 300px;
+  width: 500px;
   height: 25px;
   font-family: "Bebas Neue", sans-serif;
   background-color: rgb(255, 255, 255);
@@ -49,7 +47,7 @@
 .carrito span {
   color: rgb(0, 162, 255);
 }
-.carrito img {
+.carrito i {
   background-color: white;
   border-radius: 5px;
 }

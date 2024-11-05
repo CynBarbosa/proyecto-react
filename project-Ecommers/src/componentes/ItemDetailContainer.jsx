@@ -3,20 +3,40 @@ import products from "../assets/productos.json";
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 import "../style/itemList.css";
+import { db } from "../firebase/config";
+import { doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
 
   useEffect(() => {
-    const product = products.find(
-      (productToFind) => productToFind.id === Number(id)
-    );
-    setProduct(product);
+    const getProduct = async () => {
+      try {
+        setLoading(true);
+        const docRef = doc(db, "products", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+          setProduct({ ...docSnap.data(), id });
+        } else {
+          <>
+            <h2>No se encontro documento!</h2>
+          </>;
+        }
+        setLoading(false);
+      } catch (error) {}
+    };
+    getProduct();
   }, [id]);
 
-  return product && <ItemDetail product={product} />;
+  return loading ? (
+    <h1>Loading.. </h1>
+  ) : (
+    product && <ItemDetail product={product} />
+  );
 };
 
 export default ItemDetailContainer;

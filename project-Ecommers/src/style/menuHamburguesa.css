@@ -2,22 +2,6 @@
   width: 100%;
   overflow: hidden;
   padding: 0px 10px 5px 10px;
-  /* background-image: linear-gradient(
-    to top,
-    #2e2e2e,
-    #2c2c2c,
-    #2a2a2a,
-    #292929,
-    #272727,
-    #242424,
-    #202020,
-    #242424,
-    #272727,
-    #292929,
-    #2a2a2a,
-    #2c2c2c,
-    #2e2e2e
-  ); */
   background-image: linear-gradient(
     to bottom,
     #2e2e2e,
@@ -59,7 +43,7 @@
   color: white;
 }
 .Links:hover {
-  color: gray;
+  color: #fff200d3;
 }
 .flechaMenuHamburguesa {
   width: 20px;

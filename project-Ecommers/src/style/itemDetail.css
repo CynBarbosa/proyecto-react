@@ -11,7 +11,7 @@
   background-color: #252525;
   width: 100%;
   padding: 10px;
-  border: solid #464545;
+  border: solid #fff200d3;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -46,6 +46,19 @@
   border: solid #464545;
   border-radius: 10px;
 }
+.itemDetail div button:hover {
+  background-color: #464545;
+  border: solid #fff200d3;
+}
 .itemDetail img {
   border-radius: 10px;
+}
+.VolverHome {
+  text-decoration: none;
+  color: #fff200d3;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: lighter;
+}
+.VolverHome:hover {
+  color: rgb(48, 61, 252);
 }

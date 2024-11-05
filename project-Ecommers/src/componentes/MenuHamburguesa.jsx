@@ -17,23 +17,33 @@ const MenuHamburguesa = () => {
         <nav className="menuDesplegable">
           <ul>
             <li>
-              <NavLink className={"Links"} to={"/category/jewelery"}>
-                Joyeria
+              <NavLink className={"Links"} to={"/category/cristal"}>
+                -Vasos/Copas
               </NavLink>
             </li>
             <li>
-              <NavLink className={"Links"} to={"/category/electronics"}>
-                Electronico
+              <NavLink className={"Links"} to={"/category/platos"}>
+                -Platos
               </NavLink>
             </li>
             <li>
-              <NavLink className={"Links"} to={"/category/men's clothing"}>
-                Hombre
+              <NavLink className={"Links"} to={"/category/tazas"}>
+                -Tazas
               </NavLink>
             </li>
             <li>
-              <NavLink className={"Links"} to={"/category/women's clothing"}>
-                Damas
+              <NavLink className={"Links"} to={"/category/utensillos"}>
+                -Cubiertos/Utensillos
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className={"Links"} to={"/category/desayuno"}>
+                -Teteras/Cafeteras
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className={"Links"} to={"/category/cocina"}>
+                -Ollas/Sartenes
               </NavLink>
             </li>
           </ul>

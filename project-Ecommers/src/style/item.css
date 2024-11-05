@@ -12,10 +12,10 @@
   align-items: center;
   text-align: center;
   gap: 0.625rem;
-  border: solid #464545;
+  border: solid #fff200d3;
 }
 .container img {
-  width: 130px;
+  width: 160px;
   height: 160px;
   object-fit: cover;
   border-radius: 5px;
@@ -50,4 +50,9 @@
   font-family: "Bebas Neue", sans-serif;
   font-weight: bold;
   border: solid #464545;
+  /* #fff200b6 */
+}
+.container button:hover {
+  background-color: #464545;
+  border: solid #fff200d3;
 }
