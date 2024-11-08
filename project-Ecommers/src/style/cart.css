@@ -1,0 +1,23 @@
+.containerCart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+.endPurchase {
+  background-color: #000000;
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  padding: 5px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: bolder;
+  color: white;
+  border: solid #464545;
+  border-radius: 10px;
+}
+.endPurchase:hover {
+  background-color: #464545;
+  border: solid #fff200d3;
+}

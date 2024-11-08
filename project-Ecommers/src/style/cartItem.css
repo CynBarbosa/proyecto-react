@@ -1,0 +1,36 @@
+.cartItem {
+  /* width: 100%; */
+  margin: 10px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: solid white;
+}
+.cartItem img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+.cartItemContenido {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.cartItemContenido button {
+  background-color: #000000;
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  padding: 5px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: bolder;
+  color: white;
+  border: solid #464545;
+  border-radius: 10px;
+}
+.cartItemContenido button:hover {
+  background-color: #464545;
+  border: solid #fff200d3;
+}

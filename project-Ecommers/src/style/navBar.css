@@ -44,10 +44,6 @@
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
 }
-.carrito span {
-  color: rgb(0, 162, 255);
-}
-.carrito i {
-  background-color: white;
+.logoCart {
   border-radius: 5px;
 }

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../style/itemDetail.css";
+import { Cart } from "../context/CartProvider";
+import ItemCount from "./ItemCount";
 import { NavLink } from "react-router-dom";
 
 const ItemDetail = ({ product }) => {
-  console.log(product);
+  const { addCart } = useContext(Cart);
+  const [itemCountVisibility, setItemCountVisibility] = useState(true);
+
+  const handleCart = (quantity) => {
+    console.log(quantity);
+    setItemCountVisibility(false);
+    addCart({ ...product, quantity });
+    addCart(product, 1);
+  };
 
   return (
     <div className="conteiner2">
@@ -16,7 +26,13 @@ const ItemDetail = ({ product }) => {
           <h1>{product.title}</h1>
           <p>{product.description}</p>
           <h2>${product.price}</h2>
-          <button>Agregar al carrito!</button>
+          {itemCountVisibility ? (
+            <ItemCount addCart={handleCart} />
+          ) : (
+            <button>
+              <NavLink to={"/cart"}>Go cart</NavLink>
+            </button>
+          )}
         </div>
       </div>
     </div>

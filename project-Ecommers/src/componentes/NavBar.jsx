@@ -1,7 +1,7 @@
 import React from "react";
-import CartWidget from "./CartWidget";
 import "../style/navBar.css";
 import { NavLink } from "react-router-dom";
+import cartBuy from "../assets/img/cart-buy.svg";
 
 const NavBar = () => {
   return (
@@ -12,7 +12,14 @@ const NavBar = () => {
             Neko
           </NavLink>
           <input type="text" placeholder="Buscar producto..." id="search" />
-          <CartWidget />
+          <NavLink to={"/cart"}>
+            <img
+              className="logoCart"
+              src={cartBuy}
+              alt=""
+              style={{ width: 35, margin: 10, background: "white" }}
+            />
+          </NavLink>
         </div>
       </div>
     </>
