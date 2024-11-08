@@ -46,7 +46,7 @@ const Cart = () => {
             </button>
             ):(
             <button>
-              <NavLink to={"/orders/:ordersId"}>Go cart</NavLink>
+              <NavLink to={"/orders/:ordersId"}>Ir a la orden</NavLink>
             </button>
             )
           </>
