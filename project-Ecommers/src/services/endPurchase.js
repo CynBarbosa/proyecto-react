@@ -6,84 +6,83 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
-import { NavLink } from "react-router-dom";
 
 const endPurchase = async (cart) => {
   const productsToUpdateRefs = [];
 
-  for (const cartProduct of cart) {
-    const productRef = doc(db, "products", cartProduct.id);
-    productsToUpdateRefs.push({ ref: productRef, id: cartProduct.id });
+  // Verificación del ID de cada producto
+  for (const itemProduct of cart) {
+    if (!itemProduct.item.id) {
+      throw new Error(
+        `Product ID missing for item: ${JSON.stringify(itemProduct)}`
+      );
+    }
+    const productRef = doc(db, "products", itemProduct.item.id);
+    productsToUpdateRefs.push({ ref: productRef, id: itemProduct.item.id });
   }
 
   const orderCollectionRef = collection(db, "orders");
   try {
     const order = await runTransaction(db, async (transaction) => {
-      //Create an auxiliar array for stocks to be updated
       const stocksUpdated = [];
 
-      //1. Check valid stock of every product in cart
+      // Verificación de stock y actualización
       for (const productToUpdate of productsToUpdateRefs) {
         const { ref } = productToUpdate;
         const product = await transaction.get(ref);
         if (!product.exists()) {
-          throw "Product does not exist!";
+          throw new Error("Product does not exist!");
         }
-        console.log({ data: { ...product.data() } });
 
-        //Product in cart in order to know the quantity in cart
+        // Buscar el producto en el carrito
         const productInCart = cart.find(
-          (cartElement) => cartElement.id === product.id
+          (cartElement) => cartElement.item.id === product.id
         );
 
-        console.log({ productInCart });
+        if (!productInCart) {
+          throw new Error(`Product ${product.id} not found in cart.`);
+        }
 
-        //Check the resulting stock
         const resultStock = product.data().stock - productInCart.quantity;
+        if (resultStock < 0) {
+          throw new Error(
+            `Product: ${product.data().title} doesn't have enough stock.`
+          );
+        }
 
-        if (resultStock < 0)
-          throw `Product: ${
-            product.data().title
-          }, doesn't have enough stock. Stock: ${
-            product.data().stock
-          }, quantity added to cart: ${productInCart.quantity}.`;
-
-        //Add the result stock to the auxiliary array
         stocksUpdated.push({
           productId: product.id,
           stock: resultStock,
         });
       }
 
-      //2. Update the stock of the products (writing procedures must be after reading procedures)
+      // Actualizar stock de los productos
       for (const product of productsToUpdateRefs) {
         const { ref, id } = product;
         const stockUpdated = stocksUpdated.find(
           (stock) => stock.productId === id
         );
-        console.log({ stockUpdated });
-        transaction.update(ref, {
-          stock: stockUpdated.stock,
-        });
+        if (stockUpdated) {
+          transaction.update(ref, { stock: stockUpdated.stock });
+        }
       }
 
-      //3. Creates the order, no id is given
+      // Crear la orden
       const order = {
-        products: { ...cart },
-        user: {
-          name: "Cynthia",
-        },
-        tiemstamp: serverTimestamp(),
+        products: cart,
+        user: { name: "Cynthia" },
+        timestamp: serverTimestamp(),
       };
-      console.log(order);
-      addDoc(orderCollectionRef, order);
+
+      // Crear la orden en la base de datos
+      await addDoc(orderCollectionRef, order);
+
       return order;
     });
 
     console.log("Order created successfully!", order);
   } catch (e) {
-    //Any throw in try block will be caught
-    console.error(e);
+    console.error("Error creating order:", e);
   }
 };
 

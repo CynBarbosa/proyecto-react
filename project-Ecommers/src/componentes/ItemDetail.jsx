@@ -4,34 +4,40 @@ import { Cart } from "../context/CartProvider";
 import ItemCount from "./ItemCount";
 import { NavLink } from "react-router-dom";
 
-const ItemDetail = ({ product }) => {
-  const { addCart } = useContext(Cart);
-  const [itemCountVisibility, setItemCountVisibility] = useState(true);
+const ItemDetail = ({ item }) => {
+  const [count, setCount] = useState(0);
+  const { addItem } = useContext(Cart);
 
-  const handleCart = (quantity) => {
-    console.log(quantity);
-    setItemCountVisibility(false);
-    addCart({ ...product, quantity });
-    addCart(product, 1);
+  const addHandler = (contador) => {
+    addItem(item, contador);
+    setCount(contador);
   };
 
   return (
     <div className="conteiner2">
       <div className="itemDetail">
-        <img src={product.pictureUrl} style={{ width: 300 }} />
+        <img src={item.pictureUrl} style={{ width: 300 }} />
+
         <div>
           <NavLink className={"VolverHome"} to={"/"}>
             ←Volver al Home
           </NavLink>
-          <h1>{product.title}</h1>
-          <p>{product.description}</p>
-          <h2>${product.price}</h2>
-          {itemCountVisibility ? (
-            <ItemCount addCart={handleCart} />
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <h2>${item.price}</h2>
+          {count === 0 ? (
+            <ItemCount
+              stock={item.stock}
+              initial={item.initial}
+              onAdd={addHandler}
+            ></ItemCount>
           ) : (
-            <button>
-              <NavLink to={"/cart"}>Go cart</NavLink>
-            </button>
+            <>
+              <h5 className="">Cantidad agregada: {count}</h5>
+              <NavLink to="/cart">
+                <button className="">Ir al carrito</button>
+              </NavLink>
+            </>
           )}
         </div>
       </div>

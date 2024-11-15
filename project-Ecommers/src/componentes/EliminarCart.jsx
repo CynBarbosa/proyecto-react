@@ -1,37 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { CarritoComponent as CartContext } from "../context/CartProvider";
 
-const Carrito = () => {
-  const [carrito, setCarrito] = useState([]);
+const CarritoComponent = () => {
+  const { eliminarCart } = useContext(CartContext);
 
-  const eliminarDelCarrito = (id) => {
-    const nuevoCarrito = carrito.filter((item) => item.id === id);
-    setCarrito(nuevoCarrito);
+  // Función para confirmar y eliminar un elemento del carrito
+  const confirmarEliminar = (id) => {
+    Swal.fire({
+      title: "¿Seguro quieres eliminar?",
+      showDenyButton: true,
+      confirmButtonText: "Sí, eliminar",
+      denyButtonText: `No, no eliminar`,
+    }).then((res) => {
+      if (res.isConfirmed) {
+        eliminarDelCarrito(id); // Usar función del contexto
+        Swal.fire({
+          title: "¡Eliminado!",
+          icon: "info",
+        });
+      } else if (res.isDenied) {
+        Swal.fire({
+          title: "No se elimina",
+          icon: "info",
+        });
+      }
+    });
   };
-  return <button onClick={() => eliminarDelCarrito(item.id)}>Borrar</button>;
+
+  return (
+    <div>
+      <h2>Carrito</h2>
+      <ul>
+        {carrito.map((elemento) => (
+          <li key={elemento.id}>
+            {elemento.nombre} - ${elemento.precio}
+            <button onClick={() => confirmarEliminar(elemento.id)}>
+              Eliminar
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
-// const EliminarDelCarrito = (id) => {
-//   Swal.fire({
-//     title: "Seguro quieres eliminar?",
-//     showDenyButton: true,
-//     confirmButtonText: "Si, eliminar",
-//     denyButtonText: `No, no eliminar`,
-//   }).then((res) => {
-//     console.log(res);
-//     if (res.isConfirmed) {
-//       item = item.filter((elemento) => elemento.id !== id);
-//       //   localStorage.setItem("carrito", JSON.stringify(carrito));
-//       tarjJuego(carrito);
-//       Swal.fire({
-//         title: "eliminado!",
-//         icon: "info",
-//       });
-//     } else if (res.isDenied) {
-//       Swal.fire({
-//         title: "No se elimina",
-//         icon: "info",
-//       });
-//     }
-//   });
-// };
-export default Carrito;
+
+export default CarritoComponent;

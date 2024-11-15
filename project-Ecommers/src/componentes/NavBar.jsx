@@ -12,6 +12,7 @@ const NavBar = () => {
             Neko
           </NavLink>
           <input type="text" placeholder="Buscar producto..." id="search" />
+          <NavLink to={"/orders/:ordersId"}>ordenes</NavLink>
           <NavLink to={"/cart"}>
             <img
               className="logoCart"

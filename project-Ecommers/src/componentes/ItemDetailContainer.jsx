@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import products from "../assets/productos.json";
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 import "../style/itemList.css";
@@ -19,7 +18,6 @@ const ItemDetailContainer = () => {
         const docRef = doc(db, "products", id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          // console.log("Document data:", docSnap.data());
           setProduct({ ...docSnap.data(), id });
         } else {
           <>
@@ -35,7 +33,7 @@ const ItemDetailContainer = () => {
   return loading ? (
     <h1>Loading.. </h1>
   ) : (
-    product && <ItemDetail product={product} />
+    product && <ItemDetail item={product} />
   );
 };
 

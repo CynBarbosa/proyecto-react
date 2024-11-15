@@ -2,35 +2,53 @@ import { createContext, useState } from "react";
 
 export const Cart = createContext();
 
-const CartProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [cantidadTotal, setcantidadTotal] = useState(0);
 
-  const addCart = (product, productQuantity) => {
-    const productInCart = isInCart(product.id);
-    let cartUpdated = [...cart];
-    if (productInCart) {
-      cartUpdated = cart.map((cartProduct) => {
-        if (cartProduct.id === product.id) {
-          return {
-            ...cartProduct,
-            quantity: cartProduct.quantity + productQuantity,
-          };
-        }
-        return cartProduct;
-      });
-    } else {
-      cartUpdated.push({ ...product, quantity: productQuantity });
-    }
-
-    setCart(cartUpdated);
-  };
-  const isInCart = (productId) => {
-    return cart.some((cartProduct) => cartProduct.id === productId);
+  const cambiarCantidad = (auxCart, elementoExistente, nuevaCant) => {
+    const index = cart.indexOf(elementoExistente);
+    auxCart[index].quantity += nuevaCant;
+    setcantidadTotal(nuevaCant + cantidadTotal);
+    setCart(auxCart);
   };
 
+  const pushItem = (nuevoItem, nuevaCant, auxCart) => {
+    auxCart.push({ item: nuevoItem, quantity: nuevaCant });
+    setcantidadTotal(nuevaCant + cantidadTotal);
+    setCart(auxCart);
+  };
+
+  const addItem = (nuevoItem, nuevaCant) => {
+    const elementoExistente = cart.find((e) => e.item.id === nuevoItem.id);
+    const auxCart = [...cart];
+    elementoExistente === undefined
+      ? pushItem(nuevoItem, nuevaCant, auxCart)
+      : cambiarCantidad(auxCart, elementoExistente, nuevaCant);
+  };
+
+  const removeItem = (itemId) => {
+    const itemElegido = cart.filter((e) => e.item.id === itemId);
+    const auxCantidad = cantidadTotal - itemElegido[0].quantity;
+    const newCart = cart.filter((e) => e.item.id !== itemId);
+    setCart(newCart);
+    setcantidadTotal(auxCantidad);
+  };
+
+  const clear = () => {
+    setCart([]);
+    setcantidadTotal(0);
+  };
+
+  const isInCart = (id) => {
+    const currentItem = cart.find((e) => e.item.id === id);
+
+    return currentItem ? true : false;
+  };
   return (
-    <Cart.Provider value={{ cart, addCart, quantity }}>
+    <Cart.Provider
+      value={{ cart, addItem, removeItem, clear, isInCart, cantidadTotal }}
+    >
       {children}
     </Cart.Provider>
   );
