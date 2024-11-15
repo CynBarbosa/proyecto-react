@@ -10,7 +10,6 @@ import { db } from "../firebase/config";
 const endPurchase = async (cart) => {
   const productsToUpdateRefs = [];
 
-  // Verificación del ID de cada producto
   for (const itemProduct of cart) {
     if (!itemProduct.item.id) {
       throw new Error(
@@ -26,7 +25,6 @@ const endPurchase = async (cart) => {
     const order = await runTransaction(db, async (transaction) => {
       const stocksUpdated = [];
 
-      // Verificación de stock y actualización
       for (const productToUpdate of productsToUpdateRefs) {
         const { ref } = productToUpdate;
         const product = await transaction.get(ref);
@@ -34,7 +32,6 @@ const endPurchase = async (cart) => {
           throw new Error("Product does not exist!");
         }
 
-        // Buscar el producto en el carrito
         const productInCart = cart.find(
           (cartElement) => cartElement.item.id === product.id
         );
@@ -56,7 +53,6 @@ const endPurchase = async (cart) => {
         });
       }
 
-      // Actualizar stock de los productos
       for (const product of productsToUpdateRefs) {
         const { ref, id } = product;
         const stockUpdated = stocksUpdated.find(
@@ -67,14 +63,12 @@ const endPurchase = async (cart) => {
         }
       }
 
-      // Crear la orden
       const order = {
         products: cart,
         user: { name: "Cynthia" },
         timestamp: serverTimestamp(),
       };
 
-      // Crear la orden en la base de datos
       await addDoc(orderCollectionRef, order);
 
       return order;
