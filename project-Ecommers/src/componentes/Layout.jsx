@@ -1,4 +1,4 @@
-import Footer from "./footer";
+import Footer from "./Footer";
 import MenuHamburguesa from "./MenuHamburguesa";
 import NavBar from "./NavBar";
 import "../style/layout.css";
