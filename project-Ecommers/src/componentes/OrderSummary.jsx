@@ -1,35 +1,56 @@
 import React from "react";
+import { Modal, Box, Typography, Button } from "@mui/material";
 
-const OrderSummary = ({ order }) => {
-  if (!order) return <p>No hay orden generada aún.</p>;
+const OrderSummary = ({ order, open, onClose }) => {
+  if (!order) return null;
 
   return (
-    <div className="order-summary">
-      <h2>Resumen de la Orden</h2>
-      <p>
-        <strong>ID de la orden:</strong> {order.id}
-      </p>
-      <p>
-        <strong>Fecha de la orden:</strong>{" "}
-        {order.timestamp?.toDate().toString()}
-      </p>
-      <h3>Productos</h3>
-      <ul>
-        {order.products.map((product, index) => (
-          <li key={index}>
-            {product.item.title} - Cantidad: {product.quantity} - Precio: $
-            {product.item.price * product.quantity}
-          </li>
-        ))}
-      </ul>
-      <p>
-        <strong>Total:</strong> $
-        {order.products.reduce(
-          (total, product) => total + product.item.price * product.quantity,
-          0
-        )}
-      </p>
-    </div>
+    <Modal open={open} onClose={onClose}>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 400,
+          bgcolor: "background.paper",
+          borderRadius: 2,
+          boxShadow: 24,
+          p: 4,
+          color: "black",
+        }}
+      >
+        <Typography variant="h6" gutterBottom>
+          Resumen de la Orden
+        </Typography>
+
+        <Typography variant="body1">
+          <strong>Usuario:</strong> {order.user.name}
+        </Typography>
+        <Typography variant="body1">
+          <strong>Fecha:</strong>{" "}
+          {new Date(order.timestamp?.seconds * 1000).toLocaleString()}
+        </Typography>
+
+        <Typography variant="body1" gutterBottom>
+          <strong>Productos:</strong>
+        </Typography>
+        <ul>
+          {order.products.map((product, index) => (
+            <li key={index}>
+              {product.item.name} - Cantidad: {product.quantity} - Precio: $
+              {product.item.price}
+            </li>
+          ))}
+        </ul>
+
+        <Box mt={2}>
+          <Button variant="contained" color="primary" onClick={onClose}>
+            Volver al inicio
+          </Button>
+        </Box>
+      </Box>
+    </Modal>
   );
 };
 

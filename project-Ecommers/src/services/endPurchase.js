@@ -65,7 +65,7 @@ const endPurchase = async (cart) => {
 
       const order = {
         products: cart,
-        user: { name: "Cynthia" },
+        user: { name: "Consumidor Final" },
         timestamp: serverTimestamp(),
       };
 
@@ -75,6 +75,7 @@ const endPurchase = async (cart) => {
     });
 
     console.log("Order created successfully!", order);
+    return order;
   } catch (e) {
     console.error("Error creating order:", e);
   }

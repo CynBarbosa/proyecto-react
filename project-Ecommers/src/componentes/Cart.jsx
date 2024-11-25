@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Cart as CartContext } from "../context/CartProvider";
 import endPurchase from "../services/endPurchase";
 import "../style/cart.css";
 import OrderSummary from "./OrderSummary";
 
 const Cart = () => {
-  const { cart, removeItem } = useContext(CartContext);
+  const { cart, removeItem, clear } = useContext(CartContext);
   const [order, setOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const calcularTotal = () => {
     let total = 0;
@@ -21,9 +23,16 @@ const Cart = () => {
     try {
       const generatedOrder = await endPurchase(cart);
       setOrder(generatedOrder);
+      setShowModal(true);
     } catch (error) {
       console.error("Error generating order:", error);
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    clear();
+    navigate("/");
   };
 
   const renderCarritoVacio = () => {
@@ -104,7 +113,7 @@ const Cart = () => {
   return (
     <>
       {cart.length === 0 ? renderCarritoVacio() : renderCarrito()}
-      <OrderSummary order={order} />{" "}
+      <OrderSummary order={order} open={showModal} onClose={handleCloseModal} />
     </>
   );
 };

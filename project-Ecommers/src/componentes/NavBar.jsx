@@ -2,6 +2,7 @@ import React from "react";
 import "../style/navBar.css";
 import { NavLink } from "react-router-dom";
 import cartBuy from "../assets/img/cart-buy.svg";
+import Search from "./Search";
 
 const NavBar = () => {
   return (
@@ -11,8 +12,7 @@ const NavBar = () => {
           <NavLink className={"logoNavBar"} to={"/"}>
             Neko
           </NavLink>
-          <input type="text" placeholder="Buscar producto..." id="search" />
-          <NavLink to={"/orders/:ordersId"}>ordenes</NavLink>
+          <Search />
           <NavLink to={"/cart"}>
             <img
               className="logoCart"

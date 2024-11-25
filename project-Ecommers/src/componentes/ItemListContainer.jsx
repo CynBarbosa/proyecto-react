@@ -32,12 +32,16 @@ const ItemListContainer = () => {
             productsFiltered.push({ id: doc.id, ...doc.data() });
           });
         }
-        setProducts(productsFiltered);
+
+        const productosConStock = productsFiltered.filter(
+          (product) => product.stock > 0
+        );
+
+        setProducts(productosConStock);
         setLoading(false);
       } catch (error) {
-        <>
-          <h2>No se encontro documento!</h2>
-        </>;
+        console.error("Error al obtener productos:", error);
+        setLoading(false);
       }
     };
     getProducts();
